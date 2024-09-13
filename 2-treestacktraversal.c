@@ -14,9 +14,9 @@ typedef struct Stack {
 
 TreeNode* createNode(int data) {
     TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
-    newNode->data = data;
-    newNode->left = NULL;
-    newNode->right = NULL;
+    newNode ->data = data;
+    newNode ->left = NULL;
+    newNode ->right = NULL;
     return newNode;
 }
 
