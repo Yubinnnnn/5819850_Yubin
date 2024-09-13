@@ -14,9 +14,9 @@ typedef struct Stack {
 
 TreeNode* createNode(int data) {
     TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
-    newNode ->data = data;
-    newNode ->left = NULL;
-    newNode ->right = NULL;
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
     return newNode;
 }
 
@@ -31,14 +31,62 @@ void PlaceNode(TreeNode* parent, int direction, int data) {
 }
 
 void GenerateLinkTree(TreeNode* root) {
-    PlaceNode(root, 0, 2);     // root의 왼쪽 자식
-    PlaceNode(root, 1, 5);     // root의 오른쪽 자식
-    PlaceNode(root->left, 0, 3);  // 2의 왼쪽 자식
-    PlaceNode(root->left, 1, 6);  // 2의 오른쪽 자식
-    PlaceNode(root->right, 0, 7); // 5의 왼쪽 자식
-    PlaceNode(root->right, 1, 8); // 5의 오른쪽 자식
-    PlaceNode(root->left->left, 0, 4); // 추가 노드
+    // root (1)의 왼쪽 자식 2, 오른쪽 자식 9
+    if (root->left == NULL && root->right == NULL) {
+        PlaceNode(root, 0, 2);     // root의 왼쪽 자식
+        PlaceNode(root, 1, 9);     // root의 오른쪽 자식
+    }
+
+    if (root->left != NULL) {
+        if (root->left->left == NULL && root->left->right == NULL) {
+            // 2의 왼쪽 자식 3, 오른쪽 자식 5
+            PlaceNode(root->left, 0, 3);  // 2의 왼쪽 자식
+            PlaceNode(root->left, 1, 5);  // 2의 오른쪽 자식
+        }
+
+        if (root->left->left != NULL) {
+            if (root->left->left->left == NULL && root->left->left->right == NULL) {
+                // 3의 왼쪽 자식 4, 오른쪽 자식 6
+                PlaceNode(root->left->left, 0, 4); // 3의 왼쪽 자식
+                PlaceNode(root->left->left, 1, 6);  // 3의 오른쪽 자식
+            }
+        }
+
+        if (root->left->right != NULL) {
+            if (root->left->right->left == NULL && root->left->right->right == NULL) {
+                // 5의 왼쪽 자식 7, 오른쪽 자식 8
+                PlaceNode(root->left->right, 0, 7); // 5의 왼쪽 자식
+                PlaceNode(root->left->right, 1, 8); // 5의 오른쪽 자식
+            }
+        }
+    }
+
+    if (root->right != NULL) {
+        if (root->right->left == NULL && root->right->right == NULL) {
+            // 9의 왼쪽 자식 10, 오른쪽 자식 13
+            PlaceNode(root->right, 0, 10);   // 9의 왼쪽 자식
+            PlaceNode(root->right, 1, 13);  // 9의 오른쪽 자식
+        }
+
+        if (root->right->left != NULL) {
+            if (root->right->left->left == NULL && root->right->left->right == NULL) {
+                // 10의 왼쪽 자식 11, 오른쪽 자식 12
+                PlaceNode(root->right->left, 0, 11); // 10의 왼쪽 자식
+                PlaceNode(root->right->left, 1, 12); // 10의 오른쪽 자식
+            }
+        }
+
+        if (root->right->right != NULL) {
+            if (root->right->right->left == NULL && root->right->right->right == NULL) {
+                // 13의 왼쪽 자식 14, 오른쪽 자식 15
+                PlaceNode(root->right->right, 0, 14); // 13의 왼쪽 자식
+                PlaceNode(root->right->right, 1, 15); // 13의 오른쪽 자식
+            }
+        }
+    }
 }
+
+
 
 // 스택 push 함수
 void push(Stack** stack, TreeNode* node) {
