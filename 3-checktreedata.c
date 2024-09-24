@@ -1,34 +1,30 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 
-// 트리 노드 정의
 typedef struct TreeNode {
     int data;
     struct TreeNode* left;
     struct TreeNode* right;
 } TreeNode;
 
-typedef TreeNode* element; // 요소의 타입
-typedef struct QueueNode { // 큐의 노드 타입
+typedef TreeNode* element; 
+typedef struct QueueNode { 
     element data;
     struct QueueNode* link;
 } QueueNode;
 
-typedef struct { // 큐 ADT 구현
+typedef struct { 
     QueueNode* front, * rear;
 } LinkedQueueType;
 
-// 큐 초기화 함수
 void init(LinkedQueueType* q) {
     q->front = q->rear = NULL;
 }
 
-// 큐가 비어 있는지 확인하는 함수
 int is_empty(LinkedQueueType* q) {
     return (q->front == NULL);
 }
 
-// 큐에 요소 삽입
 void enqueue(LinkedQueueType* q, element item) {
     QueueNode* temp = (QueueNode*)malloc(sizeof(QueueNode));
     temp->data = item;
@@ -43,7 +39,6 @@ void enqueue(LinkedQueueType* q, element item) {
     }
 }
 
-// 큐에서 요소 제거
 element dequeue(LinkedQueueType* q) {
     if (is_empty(q)) {
         fprintf(stderr, "Queue is empty\n");
@@ -60,7 +55,6 @@ element dequeue(LinkedQueueType* q) {
     }
 }
 
-// 트리 노드를 생성하는 함수
 TreeNode* CreateNode(int data) {
     TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
     newNode->data = data;
@@ -69,7 +63,6 @@ TreeNode* CreateNode(int data) {
     return newNode;
 }
 
-// 트리 노드를 적절한 위치에 배치하는 함수
 void PlaceNode(TreeNode* node, int direction, int data) {
     TreeNode* newNode = CreateNode(data);
     if (direction == 0) {
@@ -80,7 +73,7 @@ void PlaceNode(TreeNode* node, int direction, int data) {
     }
 }
 
-// 트리를 생성하는 함수
+// 트리 생성
 void GenerateLinkTree(TreeNode* root) {
     // 루트 1의 자식: 2, 9
     PlaceNode(root, 0, 2);
@@ -111,7 +104,7 @@ void GenerateLinkTree(TreeNode* root) {
     PlaceNode(root->right->right, 1, 15);
 }
 
-// 노드의 합을 구하는 함수 (반복적 방법)
+// 노드의 합
 int GetSumOfNodes(TreeNode* root) {
     if (root == NULL) return 0;
 
@@ -135,7 +128,7 @@ int GetSumOfNodes(TreeNode* root) {
     return sum;
 }
 
-// 트리의 노드 수를 구하는 함수 (반복적 방법)
+// 트리의 노드 수
 int GetNumberOfNodes(TreeNode* root) {
     if (root == NULL) return 0;
 
@@ -159,7 +152,7 @@ int GetNumberOfNodes(TreeNode* root) {
     return count;
 }
 
-// 트리의 높이를 구하는 함수 (반복적 방법)
+// 트리의 높이
 int GetHeightOfTree(TreeNode* root) {
     if (root == NULL) return 0;
 
@@ -189,7 +182,7 @@ int GetHeightOfTree(TreeNode* root) {
     return height;
 }
 
-// 단말 노드(리프 노드)의 수를 구하는 함수 (반복적 방법)
+// 단말 노드(리프 노드)의 수
 int GetNumberOfLeafNodes(TreeNode* root) {
     if (root == NULL) return 0;
 
