@@ -15,8 +15,8 @@ typedef struct ThreadNode {
 
 TreeNode* createTreeNode(int key) {
     TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
-    newNode->key = key;
-    newNode->left = newNode->right = NULL;
+    newNode -> key = key;
+    newNode -> left = newNode->right = NULL;
     return newNode;
 }
 
